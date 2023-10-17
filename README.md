@@ -21,7 +21,73 @@
 ### Step 6: Edit their speed values and test to see how it looks. Drag all three animals into the Prefabs folder, choosing “Original Prefab”
 
 ## Program:
+### playercontrol
+~~~
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class playercontrol : MonoBehaviour
+{
+    public float horizontalinput;
+    public float speed = 10.0f;
+    public float xRange = 10f;
+    public GameObject projectilePrefab;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
+        horizontalinput = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * horizontalinput * Time.deltaTime * speed);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
+    }
+}
+~~~
+### moveforward
+~~~
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class moveforward : MonoBehaviour
+{
+    public float speed = 40.0f;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(Vector3.forward*Time.deltaTime* speed);
+    }
+}
+~~~
 
 ## Output:
+![Screenshot (48)](https://github.com/Naveenvetrivel/Animal-feeding-Phase-I/assets/94165322/120dd429-eec2-40b7-bac3-bf858b804322)
+![Screenshot (50)](https://github.com/Naveenvetrivel/Animal-feeding-Phase-I/assets/94165322/c079877a-1884-4404-b5e7-ac4f0d38c0f9)
+![Screenshot (49)](https://github.com/Naveenvetrivel/Animal-feeding-Phase-I/assets/94165322/7a027db2-1b4c-44c3-8721-42fe0035da39)
+
 
 ## Result:
+Thus the animal feeding phase 1 executed successfully.
